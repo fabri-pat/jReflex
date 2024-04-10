@@ -1,2 +1,4 @@
-package io.github.fabripat.jreflex.entity;public class AbstractEntity {
+package io.github.fabripat.jreflex.entity;
+
+public abstract class AbstractEntity {
 }

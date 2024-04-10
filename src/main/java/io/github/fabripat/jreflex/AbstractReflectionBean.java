@@ -6,7 +6,6 @@ import io.github.fabripat.jreflex.annotations.ExcludeFieldBeanTesting;
 import org.apache.commons.lang3.mutable.MutableInt;
 import org.apache.commons.rng.UniformRandomProvider;
 import org.apache.commons.rng.simple.RandomSource;
-
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -20,6 +19,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.*;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -27,9 +27,9 @@ import java.util.stream.Collectors;
 import static com.google.code.beanmatchers.BeanMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public abstract class AbstractReflectionBeanTest {
+public abstract class AbstractReflectionBean {
 
-    /*private static final Logger log = LoggerFactory.getLogger(AbstractReflectionBeanTest.class);*/
+    private static final Logger log = Logger.getLogger(AbstractReflectionBean.class.getName());
     private static final Pattern BASE_PACKAGE_PATTERN = Pattern.compile("io\\.github\\.fabripat\\.jreflex");
 
     private static final UniformRandomProvider RANDOM = RandomSource.XO_RO_SHI_RO_128_PP.create();
@@ -157,8 +157,7 @@ public abstract class AbstractReflectionBeanTest {
                     + className.substring(0, className.lastIndexOf('.')));
         } catch (ClassNotFoundException e) {
             throw new IllegalStateException(
-                    "Cannot find class: " + className + " in specified package: " + packageName,
-                    e);
+                    "Cannot find class: " + className + " in specified package: " + packageName, e);
         }
     }
 

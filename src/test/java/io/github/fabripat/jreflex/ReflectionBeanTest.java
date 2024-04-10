@@ -8,7 +8,7 @@ import java.lang.reflect.Method;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
-class ReflectionBean extends AbstractReflectionBean {
+class ReflectionBeanTest extends AbstractReflectionBean {
 
     @Test
     void shouldThrowClassNotFoundExceptionTryingGetNonExistentClass() {
