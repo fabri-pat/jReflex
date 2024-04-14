@@ -11,17 +11,14 @@ import java.lang.annotation.*;
  * This annotatation must be present in the class that extends @{@link io.github.fabripat.jreflex.AbstractReflectionBean}.<br>
  * </p>
  * <p>
- * <p>
  * To use this annotation, specify the root path of the project using the {@code sourceRootPath} attribute.<br>
  * Example: "io.github.fabripat.jreflex"
  * <p>
  * If this attribute will not be specified the system will calculate the source root path of the test class.
  * </p>
- * </p>
  * <p>
  * You can also specify individual sub-packages to scan for beans using the {@code packagesToScan} attribute.<br>
  * If this attribute will not be specified the system will scan all sub-packages get by {@code sourceRootPath} attribute.
- * </p>
  * </p>
  *
  * @author Fabrizio Patruno
