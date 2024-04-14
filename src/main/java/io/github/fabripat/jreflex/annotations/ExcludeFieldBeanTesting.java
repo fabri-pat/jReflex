@@ -1,18 +1,20 @@
 package io.github.fabripat.jreflex.annotations;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
-
+import java.lang.annotation.*;
 
 /**
- * If present exclude annotated field from automatic bean testing.
- * Pay attention, use this annotation in combination with ToString.Exclude and
- * EqualsAndHashCode.Exclude (Lombok annotations) otherwise test will fail.
+ * <p>
+ * Exclude annotated field from automatic bean testing.
+ * </p>
+ * <p>
+ * Pay attention, use this annotation if you are actually excluding the annotated field from
+ * {@code toString(), equals(), hashCode()} method, otherwise test will fail!<br>
  * Please consider the usage of {@link ExcludeBeanTesting} to exclude automatic testing
  * and use custom testing implementation.
+ * </p>
+ * @author Fabrizio Patruno
  */
+@Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 public @interface ExcludeFieldBeanTesting {
