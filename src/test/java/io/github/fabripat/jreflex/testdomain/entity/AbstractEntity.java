@@ -1,12 +1,10 @@
-package io.github.fabripat.jreflex.dto;
-
-import lombok.Data;
+package io.github.fabripat.jreflex.testdomain.entity;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-@Data
-public class Dto {
+@SuppressWarnings("unused")
+public abstract class AbstractEntity {
     private Integer integerField;
     private Double doubleField;
     private LocalDate localDateField;

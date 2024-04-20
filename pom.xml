@@ -5,7 +5,7 @@
 
     <groupId>io.github.fabri-pat</groupId>
     <artifactId>jReflex</artifactId>
-    <version>0.0.1</version>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
 
     <name>${project.artifactId}</name>
@@ -68,6 +68,7 @@
         <bean-matchers.version>0.14</bean-matchers.version>
         <!-- UTILITY -->
         <commons-rng-simple.version>1.5</commons-rng-simple.version>
+        <commons-lang3.version>3.14.0</commons-lang3.version>
         <!-- SONARCLOUD -->
         <sonar.organization>jreflex</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
@@ -82,23 +83,13 @@
                 <version>${lombok.version}</version>
                 <optional>true</optional>
             </dependency>
-            <!-- TEST -->
-            <dependency>
-                <groupId>org.hamcrest</groupId>
-                <artifactId>hamcrest</artifactId>
-                <version>${hamcrest.version}</version>
-            </dependency>
+            <!-- JUNIT -->
             <dependency>
                 <groupId>org.junit</groupId>
                 <artifactId>junit-bom</artifactId>
                 <version>${junit-jupiter.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>com.google.code.bean-matchers</groupId>
-                <artifactId>bean-matchers</artifactId>
-                <version>${bean-matchers.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -128,6 +119,14 @@
             <artifactId>bean-matchers</artifactId>
             <version>${bean-matchers.version}</version>
         </dependency>
+        <!-- MOCKITO -->
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-junit-jupiter</artifactId>
+            <version>5.11.0</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- UTILITY -->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-rng-simple</artifactId>
@@ -136,7 +135,7 @@
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-            <version>3.14.0</version>
+            <version>${commons-lang3.version}</version>
         </dependency>
     </dependencies>
 

@@ -1,4 +1,4 @@
-package io.github.fabripat.jreflex.entity;
+package io.github.fabripat.jreflex.testdomain.entity;
 
 
 import io.github.fabripat.jreflex.annotations.ExcludeBeanTesting;

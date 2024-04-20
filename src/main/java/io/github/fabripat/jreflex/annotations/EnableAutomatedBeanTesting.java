@@ -34,7 +34,7 @@ public @interface EnableAutomatedBeanTesting {
      *
      * @return The root path of the project.
      */
-    String sourceRootPath() default "";
+    String sourceRootPath();
 
     /**
      * <p>

@@ -10,6 +10,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ArgumentsSource;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
@@ -19,6 +20,21 @@ import java.util.logging.Logger;
 import static com.google.code.beanmatchers.BeanMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
+/**
+ * <p>
+ * This abstract class serves as a base class that must be extended and annotated with {@link io.github.fabripat.jreflex.annotations.EnableAutomatedBeanTesting}
+ * to enable automated testing of JavaBeans.
+ * </p>
+ * <p>
+ * In order to enable automated testing of JavaBeans, subclasses must extend this class and annotate
+ * them with the appropriate annotation, such as 'EnableAutomatedBeanTesting'. This annotation signals
+ * to the testing framework that the subclass contains JavaBeans to be automatically tested.
+ * </p>
+ * <p>
+ * The class provides a framework for automating the testing of JavaBeans, allowing developers to
+ * easily write tests for JavaBeans without manual intervention.
+ * </p>
+ */
 public abstract class AbstractReflectionBean {
 
     private static final Logger log = Logger.getLogger(AbstractReflectionBean.class.getName());
@@ -43,29 +59,25 @@ public abstract class AbstractReflectionBean {
     @ParameterizedTest
     @ArgumentsSource(ClassTestProvider.class)
     void beanTest(Class<?> clazz) {
-        /*log.info("{}/{} - Testing bean class {}...", current, total, clazz.getName());*/
         String[] excludedFields = Arrays.stream(clazz.getDeclaredFields())
-                .filter(f -> f.isAnnotationPresent(ExcludeFieldBeanTesting.class))
+                .filter(f -> f.isAnnotationPresent(ExcludeFieldBeanTesting.class)
+                        || Modifier.isFinal(f.getModifiers()))
                 .map(Field::getName)
                 .toArray(String[]::new);
-        /*if (excludedFields.length > 0 && log.isInfoEnabled()) {
-            log.info("> Excluded fields: {}", Arrays.toString(excludedFields));
-        }
 
-        log.info("> Testing has valid bean constructor...");*/
+        String[] finalFields = Arrays.stream(clazz.getDeclaredFields())
+                .filter(f -> Modifier.isFinal(f.getModifiers()))
+                .map(Field::getName)
+                .toArray(String[]::new);
 
         assertThat(clazz, hasValidBeanConstructor());
 
-        /*log.info("> Testing has valid accessors...");*/
-        assertThat(clazz, hasValidGettersAndSetters());
+        assertThat(clazz, hasValidGettersAndSettersExcluding(finalFields));
 
-        /*log.info("> Testing has valid equals method...");*/
         assertThat(clazz, hasValidBeanEqualsExcluding(excludedFields));
 
-        /*log.info("> Testing has valid hash code method...");*/
         assertThat(clazz, hasValidBeanHashCodeExcluding(excludedFields));
 
-        /*log.info("> Testing has valid toString method...");*/
         assertThat(clazz, hasValidBeanToStringExcluding(excludedFields));
     }
 
