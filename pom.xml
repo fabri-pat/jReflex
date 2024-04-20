@@ -5,7 +5,7 @@
 
     <groupId>io.github.fabri-pat</groupId>
     <artifactId>jReflex</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <packaging>jar</packaging>
 
     <name>${project.artifactId}</name>
@@ -50,7 +50,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <!-- JAVA -->
-        <java.version>17</java.version>
+        <java.version>11</java.version>
         <!-- LOMBOK -->
         <lombok.version>1.18.32</lombok.version>
         <!-- MAVEN -->
