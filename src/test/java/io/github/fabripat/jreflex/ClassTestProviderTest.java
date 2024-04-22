@@ -4,6 +4,7 @@ import io.github.fabripat.jreflex.annotations.EnableAutomatedBeanTesting;
 import io.github.fabripat.jreflex.testdomain.dto.Dto;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -50,9 +51,10 @@ class ClassTestProviderTest {
 
     }
 
+    @TestInstance(TestInstance.Lifecycle.PER_CLASS)
     @Nested
     class getPathsFromEnableAutomatedBeanTestingAnnotationMethod {
-        private static Stream<Arguments> provideEnableAutomatedBeanTestingAnnotations() {
+        private Stream<Arguments> provideEnableAutomatedBeanTestingAnnotations() {
             return Stream.of(
                     Arguments.of(getInstanceOfEnableAutomatedBeanTestingAnnotation("com.my.test", new String[]{})),
                     Arguments.of(getInstanceOfEnableAutomatedBeanTestingAnnotation("com.my.test", new String[]{"dto"})),
@@ -60,7 +62,7 @@ class ClassTestProviderTest {
             );
         }
 
-        private static EnableAutomatedBeanTesting getInstanceOfEnableAutomatedBeanTestingAnnotation(String packageRoot, String[] subPackages) {
+        private EnableAutomatedBeanTesting getInstanceOfEnableAutomatedBeanTestingAnnotation(String packageRoot, String[] subPackages) {
             return new EnableAutomatedBeanTesting() {
 
                 @Override
@@ -125,7 +127,7 @@ class ClassTestProviderTest {
                     Class.class
             );
 
-            Annotation result = (Annotation) invokeStaticMethod(getEnableAutomatedBeanTestingAnnotationFromBeanTestClassMethod, ReflectionBeanTest.class);
+            Annotation result = (Annotation) invokeStaticMethod(getEnableAutomatedBeanTestingAnnotationFromBeanTestClassMethod, ReflectionBeanTestTest.class);
 
             assertEquals(
                     EnableAutomatedBeanTesting.class,
