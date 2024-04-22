@@ -23,6 +23,8 @@ jobs:
           java-version: '11'
           distribution: 'temurin'
           cache: maven
+      - name: Install dependencies
+        run: mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
       - name: Run tests and collect coverage
         run: mvn -B test
       - name: Codecov
@@ -30,3 +32,7 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           slug: fabri-pat/jReflex
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
