@@ -24,9 +24,7 @@ jobs:
           distribution: 'temurin'
           cache: maven
       - name: Install dependencies
-        run: mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
-      - name: Run tests and collect coverage
-        run: mvn -B test
+        run: mvn install -DskipTests=false -Dmaven.javadoc.skip=false -B -V --no-transfer-progress
       - name: Codecov
         uses: codecov/codecov-action@v4
         with:
