@@ -32,7 +32,3 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           slug: fabri-pat/jReflex
-      - name: SonarCloud Scan
-        run: mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=jreflex_jreflex
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
