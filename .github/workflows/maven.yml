@@ -28,11 +28,11 @@ jobs:
       - name: Run tests and collect coverage
         run: mvn -B test
       - name: Codecov
-        uses: codecov/codecov-action@v4.0.1
+        uses: codecov/codecov-action@v4
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           slug: fabri-pat/jReflex
       - name: SonarCloud Scan
-        run: verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=jreflex_jreflex
+        run: mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=jreflex_jreflex
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
