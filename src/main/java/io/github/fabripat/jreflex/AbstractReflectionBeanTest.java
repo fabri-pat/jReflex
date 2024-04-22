@@ -35,9 +35,9 @@ import static org.hamcrest.MatcherAssert.assertThat;
  * easily write tests for JavaBeans without manual intervention.
  * </p>
  */
-public abstract class AbstractReflectionBean {
+public abstract class AbstractReflectionBeanTest {
 
-    private static final Logger log = Logger.getLogger(AbstractReflectionBean.class.getName());
+    private static final Logger log = Logger.getLogger(AbstractReflectionBeanTest.class.getName());
     private static final UniformRandomProvider RANDOM = RandomSource.XO_RO_SHI_RO_128_PP.create();
 
     @BeforeAll

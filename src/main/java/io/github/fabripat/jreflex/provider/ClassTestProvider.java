@@ -72,7 +72,7 @@ public class ClassTestProvider implements ArgumentsProvider {
 
         return Arrays.stream(packagesToScan)
                 .map(p -> rootPathPackageToScan.concat("/").concat(p))
-                .toList();
+                .collect(Collectors.toList());
     }
 
     /**
@@ -155,7 +155,6 @@ public class ClassTestProvider implements ArgumentsProvider {
                 .filter(clazz -> !clazz.isInterface()
                         && !clazz.getName().contains("$" + clazz.getSimpleName())
                         && !clazz.isEnum()
-                        && !clazz.isRecord()
                         && !Modifier.isAbstract(clazz.getModifiers())
                         && !clazz.isAnnotationPresent(ExcludeBeanTesting.class))
                 .collect(Collectors.toSet());
@@ -209,7 +208,7 @@ public class ClassTestProvider implements ArgumentsProvider {
                 .map(InputStreamReader::new)
                 .map(BufferedReader::new)
                 .map(BufferedReader::lines)
-                .map(Stream::toList)
+                .map(e -> e.collect(Collectors.toList()))
                 .orElseGet(Collections::emptyList);
     }
 
