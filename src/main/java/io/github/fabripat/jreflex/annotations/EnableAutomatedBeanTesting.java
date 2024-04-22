@@ -1,5 +1,7 @@
 package io.github.fabripat.jreflex.annotations;
 
+import io.github.fabripat.jreflex.AbstractReflectionBeanTest;
+
 import java.lang.annotation.*;
 
 /**
@@ -8,7 +10,7 @@ import java.lang.annotation.*;
  * and the packages you want to scan for automated bean testing.
  * </p>
  * <p>
- * This annotatation must be present in the class that extends @{@link io.github.fabripat.jreflex.AbstractReflectionBean}.<br>
+ * This annotatation must be present in the class that extends @{@link AbstractReflectionBeanTest}.<br>
  * </p>
  * <p>
  * To use this annotation, specify the root path of the project using the {@code sourceRootPath} attribute.<br>
