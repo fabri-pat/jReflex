@@ -51,7 +51,7 @@ public abstract class AbstractReflectionBeanTest {
 
         log.info(() -> String.format("Setting up value generator for { %s }...", LocalDate.class.getName()));
         BeanMatchers.registerValueGenerator(() -> {
-            long randomDateTime = RANDOM.nextLong(LocalDate.MAX.toEpochDay());
+            long randomDateTime = RANDOM.nextLong(LocalDate.MIN.toEpochDay(), LocalDate.MAX.toEpochDay());
             return LocalDate.ofEpochDay(randomDateTime);
         }, LocalDate.class);
     }
